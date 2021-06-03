@@ -26,6 +26,10 @@ int main(int argc, char * argv[]){
         switch (opt){
         case 'p':
             len_str = strlen(optarg);
+            if(len_str == 0){
+                puts("Please Enter Valid String to Search!");
+                exit(EXIT_FAILURE);
+            }
             str = (char *)calloc(1, len_str+1);
             strcpy(str, optarg);
             break;
