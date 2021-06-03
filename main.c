@@ -97,7 +97,7 @@ void print_highlight(char * str, FILE * fp, int match_case){
                 idx = (long)line_part - (long)line;
                 // flush line
                 if(idx == 0){
-                    print_hichunk(str, len_str);
+                    print_hichunk(line, len_str);
                 }else{
                     print_chunk(line, idx);
                     /* advance line the flushed amount */
