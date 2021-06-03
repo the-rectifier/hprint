@@ -13,7 +13,6 @@ void help(void);
 void print_chunk(char * str, long len_str);
 void print_highlight(char * str, FILE * fp, int match_case);
 void print_hichunk(char * str, long len_str);
-FILE * open_file(const char * fp);
 
 
 int main(int argc, char * argv[]){
@@ -23,7 +22,6 @@ int main(int argc, char * argv[]){
     FILE * fp = NULL;
     char * str = NULL;
     
-
     while((opt = getopt(argc, argv, "mp:")) != -1){
         switch (opt){
         case 'p':
@@ -42,27 +40,27 @@ int main(int argc, char * argv[]){
 
     if(optind + 1 - argc != 0){
         help();
+        free(str);
         exit(EXIT_FAILURE);
     }
 
-    if((fp = open_file(argv[optind])) == NULL){
+    if((fp = fopen(argv[optind], "r")) == NULL){
         perror("Could not open file: ");
+        free(str);
         exit(EXIT_FAILURE);
     }
 
     print_highlight(str, fp, match_case);
+    
+    free(str);
+    fclose(fp);
 
-    return 0;
+    exit(EXIT_SUCCESS);
 }
 
 void help(void){
     printf("Usage: ./hprint -p \"[STRING]\" FILE\n");
     printf("Optional arguments: -m\t Match Case\n");
-}
-
-
-FILE * open_file(const char * filename){
-    return fopen(filename, "r");
 }
 
 
