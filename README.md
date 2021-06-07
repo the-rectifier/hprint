@@ -21,13 +21,13 @@ Optional Switches:
 Example:
 
 ##### No Case Matching:
-```hprint -p "Frodo" lotr.exe```
+```hprint -p "Frodo" lotr.txt```
 
 ![](imgs/no_match.png)
 
 
 ##### Case Matching:
-```hprint -mp "Frodo" lotr.exe```
+```hprint -mp "Frodo" lotr.txt```
 
 ![](imgs/match.png)
 
